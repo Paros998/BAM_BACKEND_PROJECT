@@ -1,4 +1,4 @@
-package psk.bam_1.entity;
+package psk.bam.entity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID>, UserDetailsService {
-    Optional<UserEntity> findByUsername(final String username);
+    Optional<UserEntity> findByUsername(String username);
 
     @Override
     default UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {

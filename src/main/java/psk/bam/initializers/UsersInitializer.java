@@ -1,4 +1,4 @@
-package psk.bam_1.initializers;
+package psk.bam.initializers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -6,7 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import psk.bam_1.entity.UserRepository;
+import psk.bam.entity.UserRepository;
 
 @Log4j2
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package psk.bam_1.jwt;
+package psk.bam.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import psk.bam_1.entity.UserEntity;
-import psk.bam_1.entity.UserRepository;
+import psk.bam.entity.UserEntity;
+import psk.bam.entity.UserRepository;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

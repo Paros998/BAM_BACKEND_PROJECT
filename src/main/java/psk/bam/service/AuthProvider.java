@@ -1,4 +1,4 @@
-package psk.bam_1.service;
+package psk.bam.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import psk.bam_1.entity.UserEntity;
-import psk.bam_1.entity.UserRepository;
+import psk.bam.entity.UserEntity;
+import psk.bam.entity.UserRepository;
 
 import java.util.Optional;
 

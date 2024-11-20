@@ -1,7 +1,7 @@
-package psk.bam_1.config;
+package psk.bam.config;
 
 import lombok.NonNull;
-import psk.bam_1.jwt.JwtTokenFilter;
+import psk.bam.jwt.JwtTokenFilter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +23,11 @@ import java.util.Arrays;
 
 @Configuration
 public class SecurityConfiguration {
+    private static final int BCRYPT_STRENGTH = 10;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
+        return new BCryptPasswordEncoder(BCRYPT_STRENGTH);
     }
 
     @Bean
@@ -34,7 +36,7 @@ public class SecurityConfiguration {
         final String acao = "Access-Control-Allow-Origin";
 
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "https://localhost:8080", "http://localhost:3000",
-                "https://localhost:3000","https://localhost:8081","http://localhost:8081"));
+                "https://localhost:3000", "https://localhost:8081", "http://localhost:8081"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(Arrays.asList("Origin", acao, "Content-Type", "Accept",
                 "Authorization", "Origin , Accept", "X-Requested-With", "Access-Control-Request-Method", "Access-Control-Request-Headers"));

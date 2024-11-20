@@ -1,4 +1,4 @@
-package psk.bam_1.entity;
+package psk.bam.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -58,9 +58,13 @@ public class UserEntity implements UserDetails {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         UserEntity that = (UserEntity) o;
         return Objects.equals(userId, that.userId) && Objects.equals(password, that.password)
                 && Objects.equals(email, that.email) && Objects.equals(username, that.username)

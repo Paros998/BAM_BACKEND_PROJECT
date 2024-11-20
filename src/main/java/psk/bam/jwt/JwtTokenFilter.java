@@ -1,4 +1,4 @@
-package psk.bam_1.jwt;
+package psk.bam.jwt;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

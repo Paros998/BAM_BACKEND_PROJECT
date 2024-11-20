@@ -1,4 +1,4 @@
-package psk.bam_1.config;
+package psk.bam.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;

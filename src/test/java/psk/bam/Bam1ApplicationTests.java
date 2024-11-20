@@ -1,4 +1,4 @@
-package psk.bam_1;
+package psk.bam;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

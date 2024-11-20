@@ -1,4 +1,4 @@
-package psk.bam_1.delivery;
+package psk.bam.delivery;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +8,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import psk.bam_1.api.LoginRequest;
-import psk.bam_1.jwt.JwtService;
-import psk.bam_1.service.AuthProvider;
+import psk.bam.api.LoginRequest;
+import psk.bam.jwt.JwtService;
+import psk.bam.service.AuthProvider;
 
 
 @RequestMapping("api/v1/auth")

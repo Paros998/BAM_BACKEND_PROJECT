@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>psk</groupId>
-    <artifactId>bam_1</artifactId>
+    <artifactId>bam</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
