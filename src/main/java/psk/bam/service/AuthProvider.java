@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import psk.bam.entity.UserEntity;
-import psk.bam.entity.UserRepository;
+import psk.bam.entity.users.UserEntity;
+import psk.bam.entity.users.UserRepository;
 
 import java.util.Optional;
 

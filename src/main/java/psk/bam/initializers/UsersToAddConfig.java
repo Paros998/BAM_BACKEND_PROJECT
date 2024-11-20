@@ -2,7 +2,7 @@ package psk.bam.initializers;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import psk.bam.entity.UserEntity;
+import psk.bam.entity.users.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;

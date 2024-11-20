@@ -6,7 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import psk.bam.entity.UserRepository;
+import psk.bam.entity.users.UserRepository;
 
 @Log4j2
 @RequiredArgsConstructor

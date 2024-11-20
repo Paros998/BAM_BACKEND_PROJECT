@@ -1,0 +1,12 @@
+# Configuration regarding usage of real Postgres database
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATASOURCE_URL}/${DATASOURCE_DATABASE}
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true

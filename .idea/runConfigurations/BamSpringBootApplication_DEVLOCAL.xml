@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BamSpringBootApplication DEVLOCAL" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="DEVLOCAL" />
+    <module name="bam_1" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="psk.bam.BamSpringBootApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,4 +1,4 @@
-package psk.bam.entity;
+package psk.bam.entity.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

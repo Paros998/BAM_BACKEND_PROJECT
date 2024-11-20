@@ -14,5 +14,6 @@ public final class LoginRequest implements Serializable {
     private String username;
 
     @NonNull
+    @ToString.Exclude
     private String password;
 }

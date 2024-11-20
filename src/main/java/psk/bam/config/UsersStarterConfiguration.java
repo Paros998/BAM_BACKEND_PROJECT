@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import psk.bam.entity.UserRepository;
+import psk.bam.entity.users.UserRepository;
 import psk.bam.initializers.UsersInitializer;
 import psk.bam.initializers.UsersToAddConfig;
 
