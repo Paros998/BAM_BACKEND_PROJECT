@@ -16,16 +16,16 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Entity(name = "diabetes_tests")
-@Table(name = "diabetes_tests")
+@Entity(name = "pulse_tests")
+@Table(name = "pulse_tests")
 @ToString(callSuper = true)
 @SuperBuilder
-public class DiabetesTestEntity extends PatientTestEntity {
-    public DiabetesTestEntity() {
-        this.type = TestType.DIABETES;
+public class PulseTestEntity extends PatientTestEntity {
+    public PulseTestEntity() {
+        this.type = TestType.PULSE;
     }
 
-    private List<Integer> diabetesLevelCases = new ArrayList<>();
+    private List<Integer> beatsPerMinute = new ArrayList<>();
 
     @Override
     public boolean equals(final Object o) {
@@ -38,12 +38,12 @@ public class DiabetesTestEntity extends PatientTestEntity {
         if (!super.equals(o)) {
             return false;
         }
-        DiabetesTestEntity that = (DiabetesTestEntity) o;
-        return Objects.equals(diabetesLevelCases, that.diabetesLevelCases);
+        PulseTestEntity that = (PulseTestEntity) o;
+        return Objects.equals(beatsPerMinute, that.beatsPerMinute);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), diabetesLevelCases);
+        return Objects.hash(super.hashCode(), beatsPerMinute);
     }
 }

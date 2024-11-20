@@ -22,6 +22,7 @@ import java.util.UUID;
 @SuperBuilder
 public abstract class PatientTestEntity {
     private static final long MAX_NOTE_CHARACTERS = 5000;
+    private static final int MAX_NOTE_CHARACTERS_INT = (int) MAX_NOTE_CHARACTERS;
 
     @Id
     @GeneratedValue(
@@ -39,6 +40,7 @@ public abstract class PatientTestEntity {
     protected TestType type;
 
     @Max(MAX_NOTE_CHARACTERS)
+    @Column(length = MAX_NOTE_CHARACTERS_INT)
     protected String note;
 
     @JsonBackReference
