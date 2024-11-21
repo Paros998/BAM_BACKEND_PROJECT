@@ -3,7 +3,6 @@ package psk.bam.entity.tests.cases;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -15,8 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@SuperBuilder
-public class BloodPressure {
+@Builder
+public class BloodPressureEntity {
     @Id
     @GeneratedValue(
             strategy = GenerationType.AUTO
@@ -45,7 +44,7 @@ public class BloodPressure {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BloodPressure that = (BloodPressure) o;
+        BloodPressureEntity that = (BloodPressureEntity) o;
         return Objects.equals(pressureId, that.pressureId) && Objects.equals(bloodPressureOn, that.bloodPressureOn)
                 && Objects.equals(bloodPressureTo, that.bloodPressureTo) && Objects.equals(testOrder, that.testOrder);
     }

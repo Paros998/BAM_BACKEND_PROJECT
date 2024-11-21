@@ -1,6 +1,7 @@
 package psk.bam.config;
 
 import lombok.NonNull;
+import psk.bam.entity.users.UserRole;
 import psk.bam.jwt.JwtTokenFilter;
 
 import org.springframework.context.annotation.Bean;
@@ -71,7 +72,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").anonymous()
 
-                        .requestMatchers(HttpMethod.GET, "api/v1/users/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "api/v1/users/**", "api/v1/patient-tests/**").authenticated()
+
+                        .requestMatchers(HttpMethod.POST, "api/v1/patient-tests/**").hasRole(UserRole.PATIENT.name())
                 )
 
                 .sessionManagement(sessionManagement -> sessionManagement

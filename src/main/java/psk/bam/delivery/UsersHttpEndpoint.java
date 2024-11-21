@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
-import psk.bam.api.UserModel;
+import psk.bam.api.users.UserModel;
 import psk.bam.entity.users.UserRepository;
 
 @RequestMapping("api/v1/users")

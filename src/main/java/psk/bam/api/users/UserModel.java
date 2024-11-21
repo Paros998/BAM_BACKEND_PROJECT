@@ -1,4 +1,4 @@
-package psk.bam.api;
+package psk.bam.api.users;
 
 import java.io.Serializable;
 import java.util.UUID;

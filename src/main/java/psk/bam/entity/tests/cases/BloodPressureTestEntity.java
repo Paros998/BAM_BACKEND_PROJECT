@@ -30,7 +30,7 @@ public class BloodPressureTestEntity extends PatientTestEntity {
     @JsonManagedReference
     @ToString.Exclude
     @OneToMany(mappedBy = "bloodPressureTestEntity", fetch = FetchType.LAZY)
-    private List<BloodPressure> bloodPressures = new ArrayList<>();
+    private List<BloodPressureEntity> bloodPressures = new ArrayList<>();
 
 
     @Override

@@ -8,10 +8,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import psk.bam.api.LoginRequest;
+import psk.bam.api.login.LoginRequest;
 import psk.bam.jwt.JwtService;
 import psk.bam.service.AuthProvider;
-
 
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
