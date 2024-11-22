@@ -18,8 +18,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Entity(name = "blood_tests")
-@Table(name = "blood_tests")
+@Entity(name = "blood_pressure_tests")
+@Table(name = "blood_pressure_tests")
 @ToString(callSuper = true)
 @SuperBuilder
 public class BloodPressureTestEntity extends PatientTestEntity {
