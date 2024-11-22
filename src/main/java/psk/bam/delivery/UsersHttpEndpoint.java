@@ -26,6 +26,7 @@ public class UsersHttpEndpoint {
                         .userId(user.getUserId())
                         .username(user.getUsername())
                         .enabled(user.isEnabled())
+                        .role(user.getRole())
                         .build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
