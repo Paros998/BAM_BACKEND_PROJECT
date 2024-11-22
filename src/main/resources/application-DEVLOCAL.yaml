@@ -1,5 +1,6 @@
 jwt:
   secret: absfol7814lqmva7891294nn9asa783nr293urnq9adm38ry2
+  expire: 30000000
 
 users:
   starter:
