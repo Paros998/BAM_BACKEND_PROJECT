@@ -6,22 +6,23 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
 @Entity(name = "users")
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @SuperBuilder
 public class UserEntity implements UserDetails {
+    private static final String ROLE_PREFIX = "ROLE_";
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.AUTO
@@ -30,31 +31,44 @@ public class UserEntity implements UserDetails {
             nullable = false,
             updatable = false
     )
-    private UUID userId;
+    protected UUID userId;
 
     @ToString.Exclude
     @JsonIgnore
-    private String password;
+    protected String password;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    protected String email;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    protected String username;
 
-    private String firstName;
+    protected String firstName;
 
-    private String lastName;
+    protected String lastName;
 
-    private String phoneNumber;
+    protected String phoneNumber;
 
-    private String nationalId;
+    protected String nationalId;
 
-    private Boolean enabled;
+    protected Boolean enabled;
+
+    @Enumerated(EnumType.STRING)
+    protected UserRole role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return Collections.singleton(new SimpleGrantedAuthority(ROLE_PREFIX + role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !enabled;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
     @Override

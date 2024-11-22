@@ -20,11 +20,15 @@ public class UsersInitializer implements ApplicationRunner {
     public void run(final ApplicationArguments args) {
         log.info("{} running", this.getClass().getSimpleName());
 
-        config.getUsers().forEach(user -> {
+        final var usersToInitialize = config.getPatients().stream()
+                .filter(patientEntity -> userRepository.findByUsername(patientEntity.getUsername()).isEmpty())
+                .toList();
+
+        usersToInitialize.forEach(user -> {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
         });
 
-        log.info("Initialized users: {}", config.getUsers());
+        log.info("Initialized users: {}", usersToInitialize);
     }
 }

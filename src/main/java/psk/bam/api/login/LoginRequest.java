@@ -1,4 +1,4 @@
-package psk.bam.api;
+package psk.bam.api.login;
 
 import lombok.*;
 
