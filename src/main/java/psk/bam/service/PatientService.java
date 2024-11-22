@@ -14,10 +14,7 @@ import psk.bam.api.tests.response.PatientTestResponse;
 import psk.bam.entity.patients.PatientEntity;
 import psk.bam.entity.patients.PatientRepository;
 import psk.bam.entity.tests.PatientTestRepository;
-import psk.bam.entity.tests.cases.BloodPressureEntity;
-import psk.bam.entity.tests.cases.BloodPressureTestEntity;
-import psk.bam.entity.tests.cases.DiabetesTestEntity;
-import psk.bam.entity.tests.cases.PulseTestEntity;
+import psk.bam.entity.tests.cases.*;
 import psk.bam.mapper.HealthTestMapper;
 
 import java.util.List;
@@ -30,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PatientService {
     private final PatientRepository patientRepository;
     private final PatientTestRepository patientTestRepository;
+    private final BloodPressureRepository bloodPressureRepository;
     private final HealthTestMapper healthTestMapper;
 
     @Transactional
@@ -44,17 +42,18 @@ public class PatientService {
                 .type(AddBloodPressureTestRequest.TYPE)
                 .build();
 
-        testEntity.setBloodPressures(request.getBloodPressuresCases().stream()
+        patientTestRepository.save(testEntity);
+
+        final List<BloodPressureEntity> bloodPressureEntities = request.getBloodPressuresCases().stream()
                 .map(bloodPressure -> BloodPressureEntity.builder()
                         .testOrder(i.getAndIncrement())
                         .bloodPressureOn(bloodPressure.getBloodPressureOn())
                         .bloodPressureTo(bloodPressure.getBloodPressureTo())
                         .bloodPressureTestEntity(testEntity)
                         .build())
-                .toList()
-        );
+                .toList();
+        bloodPressureRepository.saveAll(bloodPressureEntities);
 
-        patientTestRepository.save(testEntity);
         return testEntity.getTestId();
     }
 

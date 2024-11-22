@@ -1,9 +1,6 @@
 package psk.bam.api.tests.request;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
@@ -13,6 +10,7 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @SuperBuilder
+@NoArgsConstructor
 public abstract class TestRequest {
     @NonNull
     private UUID patientId;
