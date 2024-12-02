@@ -1,14 +1,13 @@
 package psk.bam.entity.patients;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import psk.bam.entity.doctors.DoctorEntity;
 import psk.bam.entity.tests.PatientTestEntity;
 import psk.bam.entity.users.UserEntity;
 import psk.bam.entity.users.UserRole;
@@ -33,6 +32,11 @@ public class PatientEntity extends UserEntity {
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<PatientTestEntity> takenTests = new ArrayList<>();
 
+    @JsonBackReference
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DoctorEntity assignedDoctor;
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -45,11 +49,11 @@ public class PatientEntity extends UserEntity {
             return false;
         }
         PatientEntity that = (PatientEntity) o;
-        return Objects.equals(takenTests, that.takenTests);
+        return Objects.equals(takenTests, that.takenTests) && Objects.equals(assignedDoctor, that.assignedDoctor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), takenTests);
+        return Objects.hash(super.hashCode(), takenTests, assignedDoctor);
     }
 }

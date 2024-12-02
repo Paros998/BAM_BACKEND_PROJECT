@@ -3,6 +3,28 @@ users:
     enabled: true
     data:
       patients:
+        - username: 'Client123321'
+          password: 'Client123321_'
+          email: 'admin_1@rental.com'
+          first-name: 'Bob'
+          last-name: 'Dylan'
+          phone-number: '887102990'
+          national-id: '92102005998'
+          dateOfBirth: '1982-02-17'
+          enabled: true
+      doctors:
+        - username: 'Doctor123321'
+          password: 'Doctor123321_'
+          email: 'admin_1@rental.com'
+          first-name: 'Bob'
+          last-name: 'Dylan'
+          phone-number: '887102990'
+          national-id: '92102005998'
+          dateOfBirth: '1982-02-17'
+          enabled: true
+          specialization: 'Psychiatry'
+          workingAsDoctorSince: '1999-02-17'
+      admins:
         - username: 'Admin123321'
           password: 'Admin123321_'
           email: 'admin_1@rental.com'
@@ -10,4 +32,5 @@ users:
           last-name: 'Dylan'
           phone-number: '887102990'
           national-id: '92102005998'
+          dateOfBirth: '1982-02-17'
           enabled: true

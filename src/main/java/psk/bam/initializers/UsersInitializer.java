@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import psk.bam.entity.users.UserRepository;
 
+import java.util.stream.Stream;
+
 @Log4j2
 @RequiredArgsConstructor
 public class UsersInitializer implements ApplicationRunner {
@@ -20,9 +22,11 @@ public class UsersInitializer implements ApplicationRunner {
     public void run(final ApplicationArguments args) {
         log.info("{} running", this.getClass().getSimpleName());
 
-        final var usersToInitialize = config.getPatients().stream()
-                .filter(patientEntity -> userRepository.findByUsername(patientEntity.getUsername()).isEmpty())
-                .toList();
+        final var usersToInitialize = Stream.concat(Stream.concat(
+                        config.getPatients().stream().filter(patientEntity -> userRepository.findByUsername(patientEntity.getUsername()).isEmpty()),
+                        config.getDoctors().stream().filter(doctorEntity -> userRepository.findByUsername(doctorEntity.getUsername()).isEmpty())),
+                config.getAdmins().stream().filter(adminEntity -> userRepository.findByUsername(adminEntity.getUsername()).isEmpty())
+        ).toList();
 
         usersToInitialize.forEach(user -> {
             user.setPassword(passwordEncoder.encode(user.getPassword()));

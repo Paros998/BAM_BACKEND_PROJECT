@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Getter
@@ -53,6 +54,8 @@ public class UserEntity implements UserDetails {
 
     protected Boolean enabled;
 
+    protected LocalDate dateOfBirth;
+
     @Enumerated(EnumType.STRING)
     protected UserRole role;
 
@@ -84,7 +87,7 @@ public class UserEntity implements UserDetails {
                 && Objects.equals(email, that.email) && Objects.equals(username, that.username)
                 && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName)
                 && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(nationalId, that.nationalId)
-                && Objects.equals(enabled, that.enabled);
+                && Objects.equals(enabled, that.enabled) && Objects.equals(dateOfBirth, that.dateOfBirth);
     }
 
     @Override

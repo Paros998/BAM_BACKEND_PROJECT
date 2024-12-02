@@ -11,6 +11,7 @@ import psk.bam.api.tests.request.AddBloodPressureTestRequest;
 import psk.bam.api.tests.request.AddDiabetesTestRequest;
 import psk.bam.api.tests.request.AddPulseTestRequest;
 import psk.bam.api.tests.response.PatientTestResponse;
+import psk.bam.entity.doctors.DoctorEntity;
 import psk.bam.entity.patients.PatientEntity;
 import psk.bam.entity.patients.PatientRepository;
 import psk.bam.entity.tests.PatientTestRepository;
@@ -25,9 +26,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 @RequiredArgsConstructor
 public class PatientService {
+    private final DoctorService doctorService;
+
     private final PatientRepository patientRepository;
     private final PatientTestRepository patientTestRepository;
     private final BloodPressureRepository bloodPressureRepository;
+
     private final HealthTestMapper healthTestMapper;
 
     @Transactional
@@ -89,6 +93,15 @@ public class PatientService {
         return testEntity.getTestId();
     }
 
+    @Transactional
+    public void assignDoctorToPatient(final @NonNull UUID doctorId, final @NonNull UUID patientId) {
+        final PatientEntity patient = getPatientEntity(patientId);
+        final DoctorEntity doctor = doctorService.getAvailableDoctorOrThrow(doctorId);
+
+        patient.setAssignedDoctor(doctor);
+        patientRepository.save(patient);
+    }
+
     public List<PatientTestResponse> getPatientTests(final @NonNull UUID patientId) {
         final PatientEntity patient = getPatientEntity(patientId);
         return patient.getTakenTests().stream()
@@ -96,7 +109,7 @@ public class PatientService {
                 .toList();
     }
 
-    private PatientEntity getPatientEntity(final UUID patientId) {
+    public PatientEntity getPatientEntity(final UUID patientId) {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Patient not found"));
     }

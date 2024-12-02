@@ -1,9 +1,6 @@
 package psk.bam.config;
 
 import lombok.NonNull;
-import psk.bam.entity.users.UserRole;
-import psk.bam.jwt.JwtTokenFilter;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import psk.bam.entity.users.UserRole;
+import psk.bam.jwt.JwtTokenFilter;
 
 import java.util.Arrays;
 
@@ -70,11 +69,23 @@ public class SecurityConfiguration {
 
                 //  API
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").anonymous()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login")
+                        .anonymous()
 
-                        .requestMatchers(HttpMethod.GET, "api/v1/users/**", "api/v1/patient-tests/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "api/v1/users/**")
+                        .authenticated()
 
-                        .requestMatchers(HttpMethod.POST, "api/v1/patient-tests/**").hasRole(UserRole.PATIENT.name())
+                        .requestMatchers(HttpMethod.GET, "api/v1/patient-tests/**")
+                        .hasAnyRole(UserRole.PATIENT.name(), UserRole.DOCTOR.name())
+
+                        .requestMatchers(HttpMethod.GET, "api/v1/doctors/for-assignment", "api/v1/patients/assigned-doctor/**")
+                        .hasRole(UserRole.PATIENT.name())
+
+                        .requestMatchers(HttpMethod.POST, "api/v1/patient-tests/**", "api/v1/patients/assign-doctor/**")
+                        .hasRole(UserRole.PATIENT.name())
+
+                        .requestMatchers(HttpMethod.POST, "api/v1/doctors/new-doctor")
+                        .hasRole(UserRole.ADMIN.name())
                 )
 
                 .sessionManagement(sessionManagement -> sessionManagement
