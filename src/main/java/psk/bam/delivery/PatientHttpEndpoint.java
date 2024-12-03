@@ -2,11 +2,11 @@ package psk.bam.delivery;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import psk.bam.api.users.DoctorModel;
-import psk.bam.entity.doctors.DoctorEntity;
+import psk.bam.api.tests.response.AssignedDoctorResponse;
 import psk.bam.mapper.DoctorMapper;
 import psk.bam.service.PatientService;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RequestMapping("api/v1/patients")
@@ -17,9 +17,10 @@ public class PatientHttpEndpoint {
     private final DoctorMapper doctorMapper;
 
     @GetMapping("/assigned-doctor/{patientId}")
-    public DoctorModel getAssignedDoctor(final @PathVariable("patientId") UUID patientId) {
-        final DoctorEntity assignedDoctor = patientService.getPatientEntity(patientId).getAssignedDoctor();
-        return doctorMapper.mapToDoctorModel(assignedDoctor);
+    public AssignedDoctorResponse getAssignedDoctor(final @PathVariable("patientId") UUID patientId) {
+        return AssignedDoctorResponse.of(Optional.ofNullable(patientService.getPatientEntity(patientId).getAssignedDoctor())
+                .map(doctorMapper::mapToDoctorModel)
+                .orElse(null));
     }
 
     @PostMapping("/assign-doctor/{doctorId}/{patientId}")
