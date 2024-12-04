@@ -109,6 +109,15 @@ public class PatientService {
                 .toList();
     }
 
+    public List<PatientTestResponse> getPatientTests(final @NonNull UUID patientId, final Integer limit) {
+        if (limit <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Limit must be greater than 0");
+        }
+        return getPatientTests(patientId).stream()
+                .limit(limit.longValue())
+                .toList();
+    }
+
     public PatientEntity getPatientEntity(final UUID patientId) {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Patient not found"));

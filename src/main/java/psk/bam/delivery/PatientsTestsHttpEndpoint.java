@@ -1,6 +1,7 @@
 package psk.bam.delivery;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import psk.bam.api.tests.request.AddBloodPressureTestRequest;
@@ -21,6 +22,12 @@ public class PatientsTestsHttpEndpoint {
     @GetMapping("/{patientId}")
     public List<PatientTestResponse> getPatientTests(final @PathVariable UUID patientId) {
         return patientService.getPatientTests(patientId);
+    }
+
+    @GetMapping("/{patientId}/recent/{limit}")
+    public List<PatientTestResponse> getRecentPatientTests(final @PathVariable UUID patientId,
+                                                           final @PathVariable Integer limit) {
+        return patientService.getPatientTests(patientId, limit);
     }
 
     @PostMapping("/pulse")
