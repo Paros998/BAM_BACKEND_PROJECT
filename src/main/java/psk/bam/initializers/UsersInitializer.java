@@ -23,9 +23,12 @@ public class UsersInitializer implements ApplicationRunner {
         log.info("{} running", this.getClass().getSimpleName());
 
         final var usersToInitialize = Stream.concat(Stream.concat(
-                        config.getPatients().stream().filter(patientEntity -> userRepository.findByUsername(patientEntity.getUsername()).isEmpty()),
-                        config.getDoctors().stream().filter(doctorEntity -> userRepository.findByUsername(doctorEntity.getUsername()).isEmpty())),
-                config.getAdmins().stream().filter(adminEntity -> userRepository.findByUsername(adminEntity.getUsername()).isEmpty())
+                config.getPatients().stream()
+                        .filter(patientEntity -> userRepository.findByUsername(patientEntity.getUsername()).isEmpty()),
+                config.getDoctors().stream()
+                        .filter(doctorEntity -> userRepository.findByUsername(doctorEntity.getUsername()).isEmpty())),
+                config.getAdmins().stream()
+                        .filter(adminEntity -> userRepository.findByUsername(adminEntity.getUsername()).isEmpty())
         ).toList();
 
         usersToInitialize.forEach(user -> {
