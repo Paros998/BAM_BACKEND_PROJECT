@@ -1,7 +1,6 @@
 package psk.bam.delivery;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import psk.bam.api.tests.request.AddBloodPressureTestRequest;

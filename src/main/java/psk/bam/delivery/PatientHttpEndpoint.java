@@ -2,7 +2,7 @@ package psk.bam.delivery;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import psk.bam.api.tests.response.AssignedDoctorResponse;
+import psk.bam.api.patients.AssignedDoctorResponse;
 import psk.bam.mapper.DoctorMapper;
 import psk.bam.service.PatientService;
 

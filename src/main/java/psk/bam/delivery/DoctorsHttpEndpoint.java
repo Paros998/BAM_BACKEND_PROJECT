@@ -5,6 +5,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.web.bind.annotation.*;
+import psk.bam.api.doctors.AssignedPatient;
 import psk.bam.api.tests.request.AddDoctorRequest;
 import psk.bam.api.users.DoctorModel;
 import psk.bam.mapper.DoctorMapper;
@@ -25,6 +26,11 @@ public class DoctorsHttpEndpoint {
         return doctorService.findAvailableDoctors().stream()
                 .map(doctorMapper::mapToDoctorModel)
                 .toList();
+    }
+
+    @GetMapping("/{doctorId}/assigned-patients")
+    public List<AssignedPatient> findAssignedPatients(final @PathVariable UUID doctorId) {
+        return doctorService.getDoctorAssignedPatients(doctorId);
     }
 
     @PostMapping("/new-doctor")

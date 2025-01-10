@@ -9,7 +9,7 @@ users:
       patients:
         - username: 'Client123321'
           password: 'Client123321_'
-          email: 'admin_1@rental.com'
+          email: 'client_1@rental.com'
           first-name: 'Bob'
           last-name: 'Dylan'
           phone-number: '887102990'
@@ -19,7 +19,7 @@ users:
       doctors:
         - username: 'Doctor123321'
           password: 'Doctor123321_'
-          email: 'admin_1@rental.com'
+          email: 'doctor_1@rental.com'
           first-name: 'Bob'
           last-name: 'Dylan'
           phone-number: '887102990'
