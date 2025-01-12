@@ -3,6 +3,7 @@ package psk.bam.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import psk.bam.api.tests.response.PatientTestResponse;
 import psk.bam.entity.doctors.DoctorEntity;
 import psk.bam.entity.patients.PatientEntity;
 import psk.bam.entity.patients.PatientRepository;
+import psk.bam.entity.tests.PatientTestEntity;
 import psk.bam.entity.tests.PatientTestRepository;
 import psk.bam.entity.tests.cases.*;
 import psk.bam.mapper.HealthTestMapper;
@@ -100,6 +102,15 @@ public class PatientService {
 
         patient.setAssignedDoctor(doctor);
         patientRepository.save(patient);
+    }
+
+    @Transactional
+    @Modifying
+    public void updateTestNote(final @NonNull UUID testId, final @NonNull String newNote) {
+        PatientTestEntity test = patientTestRepository.findById(testId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        test.setNote(newNote);
+        patientTestRepository.save(test);
     }
 
     public List<PatientTestResponse> getPatientTests(final @NonNull UUID patientId) {

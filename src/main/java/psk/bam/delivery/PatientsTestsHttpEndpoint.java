@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import psk.bam.api.tests.request.AddBloodPressureTestRequest;
 import psk.bam.api.tests.request.AddDiabetesTestRequest;
 import psk.bam.api.tests.request.AddPulseTestRequest;
+import psk.bam.api.tests.request.UpdateTestNoteRequest;
 import psk.bam.api.tests.response.PatientTestResponse;
 import psk.bam.service.PatientService;
 
@@ -42,5 +43,10 @@ public class PatientsTestsHttpEndpoint {
     @PostMapping("/blood-pressure")
     public UUID addBloodPressureTestResults(final @Valid @RequestBody AddBloodPressureTestRequest request) {
         return patientService.addTestResult(request);
+    }
+
+    @PutMapping("/{testId}")
+    public void updateTestResult(final @PathVariable UUID testId, final @Valid @RequestBody UpdateTestNoteRequest request) {
+        patientService.updateTestNote(testId, request.getNewNote());
     }
 }

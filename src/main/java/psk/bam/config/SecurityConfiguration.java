@@ -84,6 +84,9 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "api/v1/patient-tests/**", "api/v1/patients/assign-doctor/**")
                         .hasRole(UserRole.PATIENT.name())
 
+                        .requestMatchers(HttpMethod.PUT, "api/v1/patient-tests/**")
+                        .hasRole(UserRole.DOCTOR.name())
+
                         .requestMatchers(HttpMethod.GET, "api/v1/doctors/{doctorId}/assigned-patients")
                         .hasRole(UserRole.DOCTOR.name())
 
