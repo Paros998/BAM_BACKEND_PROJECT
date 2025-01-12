@@ -21,7 +21,7 @@ spring:
     default: DEFAULT
     active: DEFAULT
     group:
-      DEFAULT: POSTGRES
+      DEFAULT: POSTGRES,SSL
       DEVLOCAL: H2
   jpa:
     show-sql: ${SHOW_SQL:true}
