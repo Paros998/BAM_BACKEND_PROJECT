@@ -18,7 +18,7 @@ public class PatientTestResponse {
     private String testDate;
     @NonNull
     private String type;
-    @NonNull
+    @Nullable
     private String note;
 
     @Nullable

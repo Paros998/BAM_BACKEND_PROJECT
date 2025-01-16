@@ -20,7 +20,9 @@ import psk.bam.entity.tests.PatientTestRepository;
 import psk.bam.entity.tests.cases.*;
 import psk.bam.mapper.HealthTestMapper;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -42,7 +44,7 @@ public class PatientService {
         final var i = new AtomicInteger(1);
 
         final BloodPressureTestEntity testEntity = BloodPressureTestEntity.builder()
-                .testDate(request.getDateOfTest())
+                .testDate(Optional.ofNullable(request.getDateOfTest()).orElse(LocalDateTime.now()))
                 .note(request.getNote())
                 .patient(patient)
                 .type(AddBloodPressureTestRequest.TYPE)
@@ -68,7 +70,7 @@ public class PatientService {
         final PatientEntity patient = getPatientEntity(request.getPatientId());
 
         final PulseTestEntity testEntity = PulseTestEntity.builder()
-                .testDate(request.getDateOfTest())
+                .testDate(Optional.ofNullable(request.getDateOfTest()).orElse(LocalDateTime.now()))
                 .note(request.getNote())
                 .patient(patient)
                 .type(AddPulseTestRequest.TYPE)
@@ -84,7 +86,7 @@ public class PatientService {
         final PatientEntity patient = getPatientEntity(request.getPatientId());
 
         final DiabetesTestEntity testEntity = DiabetesTestEntity.builder()
-                .testDate(request.getDateOfTest())
+                .testDate(Optional.ofNullable(request.getDateOfTest()).orElse(LocalDateTime.now()))
                 .note(request.getNote())
                 .patient(patient)
                 .type(AddDiabetesTestRequest.TYPE)
